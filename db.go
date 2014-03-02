@@ -16,7 +16,7 @@ var (
 	CookieIdName       = "sess_sessionid"
 	SqlTableName       = "sess_session"
 	SqlCreateSession   = `
-	CREATE TABLE ` + SqlTableName + ` IF NOT EXISTS (
+	CREATE TABLE IF NOT EXISTS ` + SqlTableName + ` (
 		id BYTEA NOT NULL,
 		name VARCHAR (255) NOT NULL,
 		key TEXT NOT NULL,
