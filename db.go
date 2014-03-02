@@ -80,6 +80,12 @@ func (s *Store) Clean(inactive time.Duration) error {
 	return rows.Err()
 }
 
+func (s *Store) Delete(sess *sessions.Session) error {
+	id := []byte(sess.ID)
+	_, err := s.Exec("DELETE FROM " + SqlTableName + " WHERE id = $1", id)
+	return err
+}
+
 func (s *Store) Get(r *http.Request, name string) (*sessions.Session, error) {
 	return sessions.GetRegistry(r).Get(s, name)
 }
